@@ -1,17 +1,23 @@
+import { useRef } from 'react'
 import { sections, socials } from '../types/navigation'
+import { useScrollToAnchor } from '../hooks/useScrollToAnchor'
 import XIcon from '../assets/icons/icon-x.svg?react'
 import FacebookIcon from '../assets/icons/icon-facebook.svg?react'
 import InstagramIcon from '../assets/icons/icon-instagram.svg?react'
 
 function Header() {
+  const headerRef = useRef<HTMLElement | null>(null)
+
   const componentsMap = {
     x: XIcon,
     facebook: FacebookIcon,
     instagram: InstagramIcon
   }
+  
+  useScrollToAnchor(headerRef)
 
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <div className="header__inner">
         <nav className="nav">
           <h1 className="sitebrand">

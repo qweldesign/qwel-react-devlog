@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --scroll-offset: 0;
+  }
+
+  :target {
+    scroll-margin-block-start: var(--scroll-offset);
+  }
+  
   body {
     font-family: "\"Noto Sans JP\"", "\"游ゴシック\"", "\"Yu Gothic\"", sans-serif;
   }
@@ -8,7 +16,7 @@
 
 @layer layout {
   .header {
-    @apply fixed top-0 z-1000 w-1/1 h-24 bg-white;
+    @apply fixed top-0 z-1000 w-1/1 h-18 lg:h-24 bg-white;
   }
 
   .header__inner {
@@ -52,7 +60,7 @@
 
 @layer project {
   .sitebrand {
-    @apply w-24;
+    @apply w-18 lg:w-24;
   }
 
   .hero {
