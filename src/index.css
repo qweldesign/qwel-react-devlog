@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "\"Noto Sans JP\"", "\"游ゴシック\"", "\"Yu Gothic\"", sans-serif;
+  }
+}
+
+@layer layout {
+  .header {
+    @apply fixed top-0 z-1000 w-1/1 h-24 bg-white;
+  }
+
+  .header__inner {
+    @apply flex flex-wrap items-center justify-between max-w-6xl h-1/1 mx-auto px-6;
+  }
+
+  .footer {
+    @apply h-72 bg-sky-500 text-white;
+  }
+
+  .footer__inner {
+    @apply flex flex-wrap items-center justify-center gap-6 max-w-6xl h-1/1 mx-auto px-6 py-24;
+  }
+}
+
+@layer project {
+  .sitebrand {
+    @apply w-24;
+  }
+
+  .hero {
+    @apply relative flex items-center justify-center h-screen text-center;
+  }
+
+  .hero__content {
+    @apply relative z-10;
+
+    p {
+      @apply text-white text-2xl/[1.8];
+    }
+  }
+
+  .hero__image {
+    @apply absolute w-1/1 h-1/1 bg-[url(/images/sampleImage.jpg)] bg-center bg-cover bg-fixed blur-[1px];
+  }
+
+  .footer-link {
+    @apply inline-flex flex-wrap items-center justify-center gap-3 text-sm;
+
+    svg {
+      @apply w-9 fill-current;
+    }
+  }
+}
+
+@layer components {
+  .button {
+    @apply inline-flex items-center justify-center rounded-md transition-all duration-300 hover:scale-95;
+  }
+
+  .button.is-small {
+    @apply w-36 h-9 text-xs;
+  }
+
+  .button.is-medium {
+    @apply w-48 h-12 text-base;
+  }
+
+  .button.is-large {
+    @apply w-60 h-15 text-xl;
+  }
+
+  .button.is-sky {
+    @apply bg-sky-500 text-white hover:bg-sky-200 hover:text-black;
+  }
+}
