@@ -8,7 +8,7 @@
   :target {
     scroll-margin-block-start: var(--scroll-offset);
   }
-  
+
   body {
     font-family: "\"Noto Sans JP\"", "\"游ゴシック\"", "\"Yu Gothic\"", sans-serif;
   }
@@ -16,7 +16,11 @@
 
 @layer layout {
   .header {
-    @apply fixed top-0 z-1000 w-1/1 h-18 lg:h-24 bg-white;
+    @apply fixed top-0 z-1000 w-1/1 h-20 lg:h-24 bg-white lg:bg-transparent hover:bg-white text-black lg:text-white hover:text-black transition-all duration-300;
+  }
+
+  .header:not(.is-active) {
+    @apply h-20 bg-white text-black text-sm;
   }
 
   .header__inner {
@@ -32,7 +36,7 @@
   }
 
   .primary-menu__item {
-    @apply capitalize;
+    @apply text-[1em] capitalize;
 
     a {
       @apply hover:text-sky-500;
@@ -45,7 +49,7 @@
     }
     
     svg {
-      @apply w-9 fill-current;
+      @apply w-[2em] fill-current;
     }
   }
 
@@ -60,7 +64,7 @@
 
 @layer project {
   .sitebrand {
-    @apply w-18 lg:w-24;
+    @apply w-[5em] lg:w-[6em];
   }
 
   .hero {

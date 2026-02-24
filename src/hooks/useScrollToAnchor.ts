@@ -58,4 +58,6 @@ export function useScrollToAnchor(headerRef: RefObject<HTMLElement | null>, opti
       window.removeEventListener('resize', onResize)
     }
   }, [])
+
+  return { updateOffset }
 }
