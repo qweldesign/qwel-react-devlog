@@ -10,6 +10,12 @@ type ActiveHeaderConfig = {
   name: 'activeHeader'
 }
 
+type ScrollSpyConfig = {
+  name: 'scrollSpy'
+  rootMargin?: string
+}
+
 export type ProviderConfig = 
   | ScrollToAnchorConfig
   | ActiveHeaderConfig
+  | ScrollSpyConfig

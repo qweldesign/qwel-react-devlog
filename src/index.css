@@ -43,6 +43,10 @@
     }
   }
 
+  .primary-menu__item.is-current {
+    @apply font-bold;
+  }
+
   .social-menu__item {
     a {
       @apply hover:text-sky-500;

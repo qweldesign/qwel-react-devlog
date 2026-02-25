@@ -2,6 +2,7 @@ import { type ReactNode } from 'react'
 import { type ProviderConfig } from '../types/providers'
 import { ScrollToAnchorProvider } from '../providers/ScrollToAnchorProvider' 
 import { ActiveHeaderProvider } from '../providers/ActiveHeaderProvider'
+import { ScrollSpyProvider } from '../providers/ScrollSpyProvider'
 
 type Props = {
   children: ReactNode
@@ -10,7 +11,8 @@ type Props = {
 
 const providerRegistry = {
   scrollToAnchor: ScrollToAnchorProvider,
-  activeHeader: ActiveHeaderProvider
+  activeHeader: ActiveHeaderProvider,
+  scrollSpy: ScrollSpyProvider
 }
 
 function AppProviders({ children, providers = [] }: Props) {

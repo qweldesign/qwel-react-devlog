@@ -7,7 +7,8 @@ import Footer from './components/Footer'
 function App() {
   const providers: ProviderConfig[] = [
     { name: 'scrollToAnchor' }, // ← ActiveHeader を使用する場合は必須
-    { name: 'activeHeader' }
+    { name: 'activeHeader' },
+    { name: 'scrollSpy' }
   ]
 
   return (

@@ -2,6 +2,7 @@ import { type TransitionEvent, useRef, useEffect } from 'react'
 import { sections, socials } from '../types/navigation'
 import { useScrollToAnchor } from '../providers/ScrollToAnchorProvider'
 import { useActiveHeader } from '../providers/ActiveHeaderProvider'
+import { useScrollSpy } from '../providers/ScrollSpyProvider'
 import XIcon from '../assets/icons/icon-x.svg?react'
 import FacebookIcon from '../assets/icons/icon-facebook.svg?react'
 import InstagramIcon from '../assets/icons/icon-instagram.svg?react'
@@ -15,6 +16,8 @@ function Header() {
   const registerHeader = activeHeader?.registerHeader ?? scrollToAnchor?.registerHeader
   const isActive = activeHeader?.isActive ?? true
   const updateOffset = activeHeader?.updateOffset
+  const scrollSpy = useScrollSpy()
+  const currentId = scrollSpy?.currentId
 
   useEffect(() => {
     registerSentinel?.(sentinelRef.current)
@@ -43,7 +46,7 @@ function Header() {
             </h1>
             <ul className="primary-menu">
               {sections.map(name => (
-                <li key={name} className="primary-menu__item">
+                <li key={name} className={`primary-menu__item ${currentId === name ? 'is-current' : ''}`}>
                   <a href={`#${name}`}>{name}</a>
                 </li>
               ))}
