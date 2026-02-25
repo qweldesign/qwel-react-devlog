@@ -1,11 +1,13 @@
 import { useRef, useEffect } from 'react'
 import { useScrollSpy } from '../providers/ScrollSpyProvider'
+import { useReadableOnScroll } from '../providers/ReadableOnScrollProvider'
 
 
 function Section ({ name }: { name: string }) {
   const sectionRef = useRef<HTMLElement | null>(null)
   const scrollSpy = useScrollSpy()
   const registerSection = scrollSpy?.registerSection
+  const { el, isInview } = useReadableOnScroll()
 
   useEffect(() => {
     if (sectionRef.current) registerSection?.(sectionRef.current)
@@ -13,7 +15,7 @@ function Section ({ name }: { name: string }) {
 
   return (
     <section id={name} className="section" ref={sectionRef}>
-      <h2 className="section__heading">{name} section</h2>
+      <h2 className={`section__heading ${isInview ? 'is-inview' : ''}`} ref={el} data-readable>{name} section</h2>
     </section>
   )
 }

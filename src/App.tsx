@@ -8,7 +8,8 @@ function App() {
   const providers: ProviderConfig[] = [
     { name: 'scrollToAnchor' }, // ← ActiveHeader を使用する場合は必須
     { name: 'activeHeader' },
-    { name: 'scrollSpy' }
+    { name: 'scrollSpy' },
+    { name: 'readableOnScroll' }
   ]
 
   return (

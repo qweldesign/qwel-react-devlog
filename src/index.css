@@ -128,4 +128,20 @@
   .button.is-sky {
     @apply bg-sky-500 text-white hover:bg-sky-200 hover:text-black;
   }
+
+  [data-readable] {
+    @apply opacity-0 transform-[translateY(12px)] transition-all duration-300;
+    will-change: opacity, transform;
+  }
+
+  [data-readable].is-inview {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-readable] {
+      @apply: opacity-1 transform-none transition-none;
+    }
+  }
 }
