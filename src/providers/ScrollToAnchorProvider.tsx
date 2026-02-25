@@ -1,17 +1,29 @@
-// useScrollToAnchor.ts
+// ScrollToAnchorProvider.tsx
 
-import { type RefObject, useRef, useEffect } from 'react'
+import { type RefCallback, type ReactNode, createContext, useContext, useRef, useEffect } from 'react'
 
-interface Options {
+interface ScrollToAnchorContextType {
+  registerHeader: RefCallback<HTMLElement>
+  updateOffset: () => void
+}
+
+interface Props {
+  children: ReactNode
   cssVar?: string
   offset?: number
 }
 
-export function useScrollToAnchor(headerRef: RefObject<HTMLElement | null>, options: Options = {}) {
-  // オプション
-  const cssVar = options.cssVar ?? '--scroll-offset'
-  const fallbackOffset = options.offset ?? 0
+const ScrollToAnchorContext = createContext<ScrollToAnchorContextType | null>(null)
 
+export function ScrollToAnchorProvider(props: Props) {
+  // Context
+  const headerRef = useRef<HTMLElement | null>(null)
+  
+  // オプション
+  const children = props.children
+  const cssVar = props.cssVar ?? '--scroll-offset'
+  const fallbackOffset = props.offset ?? 0
+  
   // resize throttle
   const resizeTicking = useRef(false)
 
@@ -29,9 +41,9 @@ export function useScrollToAnchor(headerRef: RefObject<HTMLElement | null>, opti
   // リサイズ
   const onResize = () => {
     if (resizeTicking.current) return
+    resizeTicking.current = true
 
     // requestAnimationFrame でスロットル
-    resizeTicking.current = true
     requestAnimationFrame(() => {
       updateOffset()
       resizeTicking.current = false
@@ -44,7 +56,6 @@ export function useScrollToAnchor(headerRef: RefObject<HTMLElement | null>, opti
     const { hash } = window.location
     if (!hash) return
 
-    // history を汚さないため replaceState を使用
     history.replaceState(null, '', window.location.pathname + window.location.search)
     history.replaceState(null, '', window.location.pathname + window.location.search + hash)
   }
@@ -59,5 +70,17 @@ export function useScrollToAnchor(headerRef: RefObject<HTMLElement | null>, opti
     }
   }, [])
 
-  return { updateOffset }
+  const registerHeader = (header: HTMLElement | null) => {
+    headerRef.current = header
+  }
+
+  return (
+    <ScrollToAnchorContext.Provider value={{ registerHeader, updateOffset }}>
+      {children}
+    </ScrollToAnchorContext.Provider>
+  )
+}
+
+export const useScrollToAnchor = () => {
+  return useContext(ScrollToAnchorContext)
 }

@@ -1,6 +1,7 @@
-import { type TransitionEvent, useRef, useState } from 'react'
+import { type TransitionEvent, useRef, useEffect } from 'react'
 import { sections, socials } from '../types/navigation'
-import { useActiveHeader } from '../hooks/useActiveHeader'
+import { useScrollToAnchor } from '../providers/ScrollToAnchorProvider'
+import { useActiveHeader } from '../providers/ActiveHeaderProvider'
 import XIcon from '../assets/icons/icon-x.svg?react'
 import FacebookIcon from '../assets/icons/icon-facebook.svg?react'
 import InstagramIcon from '../assets/icons/icon-instagram.svg?react'
@@ -8,18 +9,27 @@ import InstagramIcon from '../assets/icons/icon-instagram.svg?react'
 function Header() {
   const sentinelRef = useRef<HTMLDivElement | null>(null)
   const headerRef = useRef<HTMLElement | null>(null)
-  const [isActive, setIsActive] = useState(false)
+  const activeHeader = useActiveHeader()
+  const scrollToAnchor = activeHeader ? null : useScrollToAnchor()
+  const registerSentinel = activeHeader?.registerSentinel
+  const registerHeader = activeHeader?.registerHeader ?? scrollToAnchor?.registerHeader
+  const isActive = activeHeader?.isActive ?? true
+  const updateOffset = activeHeader?.updateOffset
+
+  useEffect(() => {
+    registerSentinel?.(sentinelRef.current)
+    registerHeader?.(headerRef.current)
+  }, [])
+
+  const handleTransitionEnd = (e: TransitionEvent<HTMLElement>) => {
+    if (e.target !== e.currentTarget) return
+    updateOffset?.()
+  }
 
   const componentsMap = {
     x: XIcon,
     facebook: FacebookIcon,
     instagram: InstagramIcon
-  }
-  
-  const { updateOffset } = useActiveHeader(sentinelRef, headerRef, setIsActive)
-  const handleTransitionEnd = (e: TransitionEvent<HTMLElement>) => {
-    if (e.target !== e.currentTarget) return
-    updateOffset()
   }
 
   return (
