@@ -53,11 +53,11 @@ function Header() {
             </ul>
             <ul className="social-menu">
               {socials.map(name => {
-                const Icon = componentsMap[name]
+                const SocialIcon = componentsMap[name]
                 return (
                   <li key={name} className="social-menu__item">
                     <a href={`https://${name}.com/qweldesign`} target="_blank" rel="noopener">
-                      <Icon />
+                      <SocialIcon />
                     </a>
                   </li>
                 )

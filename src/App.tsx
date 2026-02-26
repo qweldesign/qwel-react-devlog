@@ -3,6 +3,7 @@ import AppProviders from './layout/AppProviders'
 import Header from './layout/Header'
 import Main from './layout/Main'
 import BackToTop from './patterns/BackToTop'
+import DrawerMenu from './patterns/DrawerMenu'
 import Footer from './layout/Footer'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Header />
       <Main />
       <BackToTop />
+      <DrawerMenu />
       <Footer />
     </AppProviders>
   )
