@@ -2,6 +2,7 @@ import { type ProviderConfig } from './types/providers'
 import AppProviders from './layout/AppProviders'
 import Header from './layout/Header'
 import Main from './layout/Main'
+import BackToTop from './patterns/BackToTop'
 import Footer from './layout/Footer'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <AppProviders providers={providers}>
       <Header />
       <Main />
+      <BackToTop />
       <Footer />
     </AppProviders>
   )
