@@ -129,6 +129,88 @@
     @apply bg-sky-500 text-white hover:bg-sky-200 hover:text-black;
   }
 
+  .icon {
+    @apply relative block overflow-hidden transition-colors duration-300;
+  }
+
+  .icon.is-small {
+    @apply w-6 h-6;
+  }
+
+  .icon.is-medium {
+    @apply w-9 h-9;
+  }
+
+  .icon.is-large {
+    @apply w-12 h-12;
+  }
+
+  .icon.is-rounded {
+    @apply rounded-full;
+  }
+
+  .icon.is-sky {
+    @apply bg-sky-500;
+
+    .icon__span,
+    .icon__span::before,
+    .icon__span::after {
+      @apply border-white;
+    }
+  }
+
+  .icon.is-sky:hover {
+    @apply bg-sky-200;
+
+    .icon__span,
+    .icon__span::before,
+    .icon__span::after {
+      @apply border-black;
+    }
+  }
+
+  .icon__span {
+    @apply relative block border-0 transition-colors duration-300;
+  }
+
+  .icon.is-menu .icon__span {
+    @apply w-6/10 h-2/10 my-[40%] mx-[20%] border-y-2;
+  }
+
+  .icon.is-close .icon__span::before {
+    content: "";
+    @apply absolute block w-6/10 h-4/100 my-[48%] mx-[20%] border transform-[rotate(-45deg)] ;
+  }
+
+  .icon.is-close .icon__span::after {
+    content: "";
+    @apply absolute block w-6/10 h-4/100 my-[48%] mx-[20%] border transform-[rotate(45deg)] ;
+  }
+
+  .icon.is-chevron-up .icon__span {
+    @apply w-3/10 h-3/10 m-[35%] border-t-2 border-s-2 transform-[rotate(45deg)] translate-x-1/10 translate-y-1/10;
+  }
+
+  .icon.is-chevron-down .icon__span {
+    @apply w-3/10 h-3/10 m-[35%] border-e-2 border-b-2 transform-[rotate(45deg)] -translate-x-1/10 -translate-y-1/10;
+  }
+
+  .icon.is-chevron-left .icon__span {
+    @apply w-3/10 h-3/10 m-[35%] border-s-2 border-b-2 transform-[rotate(45deg)] translate-x-1/10 -translate-y-1/10;
+  }
+
+  .icon.is-chevron-right .icon__span {
+    @apply w-3/10 h-3/10 m-[35%] border-t-2 border-e-2 transform-[rotate(45deg)] -translate-x-1/10 translate-y-1/10;
+  }
+
+  .back-to-top {
+    @apply fixed right-0 bottom-0 z-1000 block m-3 rounded-full opacity-0 transform-[rotateY(-180deg)] translate-y-4 transition-all duration-300 cursor-pointer;
+  }
+
+  .back-to-top.is-active {
+    @apply opacity-100 transform-[rotate(0deg)] translate-y-0 
+  }
+
   [data-readable] {
     @apply opacity-0 transform-[translateY(12px)] transition-all duration-300;
     will-change: opacity, transform;
