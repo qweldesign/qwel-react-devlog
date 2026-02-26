@@ -1,6 +1,6 @@
 import { sections } from '../types/navigation'
-import Hero from './Hero'
-import Section from './Section'
+import Hero from '../projects/Hero'
+import Section from '../projects/Section'
 
 function Main() {
   return (

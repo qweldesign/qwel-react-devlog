@@ -1,8 +1,8 @@
 import { type ProviderConfig } from './types/providers'
-import AppProviders from './components/AppProviders'
-import Header from './components/Header'
-import Main from './components/Main'
-import Footer from './components/Footer'
+import AppProviders from './layout/AppProviders'
+import Header from './layout/Header'
+import Main from './layout/Main'
+import Footer from './layout/Footer'
 
 function App() {
   const providers: ProviderConfig[] = [
